@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/enter_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintEnd_toStartOf="@+id/search_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Search"
+        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enter_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="UnknownId" />
+
+    <ListView
+        android:id="@+id/poke_list"
+        android:layout_width="406dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_button" />
+
+    <ImageView
+        android:id="@+id/poke_image"
+        android:layout_width="218dp"
+        android:layout_height="177dp"
+        app:layout_constraintBottom_toTopOf="@+id/xp_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/poke_name"
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@android:drawable/ic_menu_info_details"/>
+
+    <TextView
+        android:id="@+id/number_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="270dp"
+        android:text="Number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/poke_list" />
+
+    <TextView
+        android:id="@+id/weight_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Weight"
+        app:layout_constraintStart_toStartOf="@+id/number_id"
+        app:layout_constraintTop_toBottomOf="@+id/number_id" />
+
+    <TextView
+        android:id="@+id/move_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Move"
+        app:layout_constraintStart_toStartOf="@+id/weight_id"
+        app:layout_constraintTop_toBottomOf="@+id/weight_id" />
+
+    <TextView
+        android:id="@+id/xp_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="35dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/poke_list" />
+
+    <TextView
+        android:id="@+id/height_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/xp_view"
+        app:layout_constraintStart_toStartOf="@+id/xp_view"
+        app:layout_constraintTop_toBottomOf="@+id/xp_view" />
+
+    <TextView
+        android:id="@+id/ability_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/height_view"
+        app:layout_constraintStart_toStartOf="@+id/height_view"
+        app:layout_constraintTop_toBottomOf="@+id/height_view" />
+
+    <TextView
+        android:id="@+id/poke_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/poke_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/poke_list"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/number_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/number_id"
+        app:layout_constraintStart_toEndOf="@+id/number_id"
+        app:layout_constraintTop_toTopOf="@+id/number_id" />
+
+    <TextView
+        android:id="@+id/weight_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="35dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/number_view"
+        app:layout_constraintStart_toEndOf="@+id/weight_id"
+        app:layout_constraintTop_toBottomOf="@+id/number_view" />
+
+    <TextView
+        android:id="@+id/move_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="35dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/weight_view"
+        app:layout_constraintStart_toEndOf="@+id/move_id"
+        app:layout_constraintTop_toBottomOf="@+id/weight_view" />
+
+    <TextView
+        android:id="@+id/xp_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:text="Base XP"
+        app:layout_constraintBottom_toBottomOf="@+id/xp_view"
+        app:layout_constraintEnd_toStartOf="@+id/xp_view"
+        app:layout_constraintTop_toTopOf="@+id/xp_view" />
+
+    <TextView
+        android:id="@+id/height_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="35dp"
+        android:text="Height"
+        app:layout_constraintEnd_toStartOf="@+id/height_view"
+        app:layout_constraintStart_toStartOf="@+id/xp_id"
+        app:layout_constraintTop_toBottomOf="@+id/xp_id" />
+
+    <TextView
+        android:id="@+id/ability_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="35dp"
+        android:text="Ability"
+        app:layout_constraintEnd_toStartOf="@+id/ability_view"
+        app:layout_constraintStart_toStartOf="@+id/height_id"
+        app:layout_constraintTop_toBottomOf="@+id/height_id" />
+
+    <Button
+        android:id="@+id/clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/clearDB_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/move_id"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/clearDB_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear Database"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/clear_button"
+        app:layout_constraintTop_toBottomOf="@+id/ability_view"
+        app:layout_constraintVertical_bias="0.5" />
+</androidx.constraintlayout.widget.ConstraintLayout>
