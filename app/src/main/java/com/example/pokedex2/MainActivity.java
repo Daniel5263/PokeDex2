@@ -1,13 +1,19 @@
 package com.example.pokedex2;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +28,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 
 import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
@@ -30,9 +37,12 @@ import com.squareup.picasso.Picasso;
 public class MainActivity extends AppCompatActivity {
 
     private static final String API_KEY = "lThAsyIlczF0OQlNphrPWPZ99Z5uOXch";
+    private DatabaseReference databaseReference;
 
     EditText enterNameEditText;
     Button searchButton;
+    Button clearButton;
+    Button clearDbButton;
     ListView pokeListView;
     ImageView imageView;
     ArrayAdapter<String> adapter;
@@ -43,8 +53,12 @@ public class MainActivity extends AppCompatActivity {
         AndroidNetworking.initialize(getApplicationContext());
         setContentView(R.layout.activity_main);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
         enterNameEditText = findViewById(R.id.enter_name);
         searchButton = findViewById(R.id.search_button);
+        clearButton = findViewById(R.id.clear_button);
+        clearDbButton = findViewById(R.id.clearDB_button);
         pokeListView = findViewById(R.id.poke_list);
         imageView = findViewById(R.id.poke_image);
 
@@ -58,12 +72,29 @@ public class MainActivity extends AppCompatActivity {
 
                 makeRequest(pokemon);
 
-
-
-                adapter.add(pokemon);
-                adapter.notifyDataSetChanged();
-
                 enterNameEditText.setText("");
+            }
+        });
+
+        pokeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedPokemon = (String) parent.getItemAtPosition(position);
+                makeRequest(selectedPokemon);
+            }
+        });
+
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearPokemonProfile();
+            }
+        });
+
+        clearDbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearDatabase();
             }
         });
     }
@@ -101,16 +132,73 @@ public class MainActivity extends AppCompatActivity {
                     ((TextView) findViewById(R.id.move_view)).setText(randomMove);
                     ((TextView) findViewById(R.id.ability_view)).setText(randomAbility);
 
-
-                    Toast.makeText(getApplicationContext(), data.getName() + " added!", Toast.LENGTH_SHORT).show();
+                if (adapter.getPosition(data.getName()) == -1) {
+                    adapter.add(data.getName());
+                    adapter.notifyDataSetChanged();
+                    databaseReference = FirebaseDatabase.getInstance().getReference("pokemon");
+                    storePokemonInFirebase(data);
+                }
             }
 
             @Override
             public void onError(ANError anError) {
-                Toast.makeText(getApplicationContext(), "Error on getting data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Enter a real Pokemon please", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    private void storePokemonInFirebase(Tickers pokemon) {
+        String pokemonName = pokemon.getName();
+
+        databaseReference.orderByChild("name").equalTo(pokemonName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Toast.makeText(getApplicationContext(), pokemonName + " already stored in database", Toast.LENGTH_SHORT).show();
+                } else {
+                    String key = databaseReference.push().getKey();
+                    databaseReference.child(key).setValue(pokemon);
+                    Toast.makeText(getApplicationContext(), pokemonName + " added!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("Firebase", "Error checking duplicate", databaseError.toException());
+            }
+        });
+    }
+
+    private void clearPokemonProfile() {
+        enterNameEditText.setText("");
+        imageView.setImageResource(android.R.color.transparent);
+
+        ((TextView) findViewById(R.id.poke_name)).setText("");
+        ((TextView) findViewById(R.id.number_view)).setText("");
+        ((TextView) findViewById(R.id.weight_view)).setText("");
+        ((TextView) findViewById(R.id.height_view)).setText("");
+        ((TextView) findViewById(R.id.xp_view)).setText("");
+        ((TextView) findViewById(R.id.move_view)).setText("");
+        ((TextView) findViewById(R.id.ability_view)).setText("");
+    }
+
+    private void clearDatabase() {
+        DatabaseReference pokemonReference = FirebaseDatabase.getInstance().getReference("pokemon");
+
+        pokemonReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    snapshot.getRef().removeValue();
+                }
+                Toast.makeText(getApplicationContext(), "All Pokemon deleted from the database", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("Firebase", "Error clearing database", databaseError.toException());
+            }
+        });
+    }
 }
 

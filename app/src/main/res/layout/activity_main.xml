@@ -61,7 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginTop="270dp"
-        android:text="Number"
+        android:text="Number: "
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/poke_list" />
 
@@ -70,7 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="Weight"
+        android:text="Weight: "
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/number_id"
         app:layout_constraintTop_toBottomOf="@+id/number_id" />
 
@@ -79,7 +81,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="Move"
+        android:text="Move: "
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/weight_id"
         app:layout_constraintTop_toBottomOf="@+id/weight_id" />
 
@@ -89,7 +92,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="270dp"
         android:layout_marginEnd="35dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/poke_list" />
 
@@ -98,7 +100,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/xp_view"
         app:layout_constraintStart_toStartOf="@+id/xp_view"
         app:layout_constraintTop_toBottomOf="@+id/xp_view" />
@@ -108,7 +109,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/height_view"
         app:layout_constraintStart_toStartOf="@+id/height_view"
         app:layout_constraintTop_toBottomOf="@+id/height_view" />
@@ -117,7 +117,9 @@
         android:id="@+id/poke_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Pokemon"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/poke_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -130,7 +132,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/number_id"
         app:layout_constraintStart_toEndOf="@+id/number_id"
         app:layout_constraintTop_toTopOf="@+id/number_id" />
@@ -141,7 +142,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginTop="35dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/number_view"
         app:layout_constraintStart_toEndOf="@+id/weight_id"
         app:layout_constraintTop_toBottomOf="@+id/number_view" />
@@ -152,7 +152,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginTop="35dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/weight_view"
         app:layout_constraintStart_toEndOf="@+id/move_id"
         app:layout_constraintTop_toBottomOf="@+id/weight_view" />
@@ -162,7 +161,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="35dp"
-        android:text="Base XP"
+        android:text="Base XP: "
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/xp_view"
         app:layout_constraintEnd_toStartOf="@+id/xp_view"
         app:layout_constraintTop_toTopOf="@+id/xp_view" />
@@ -173,7 +173,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="35dp"
-        android:text="Height"
+        android:text="Height: "
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/height_view"
         app:layout_constraintStart_toStartOf="@+id/xp_id"
         app:layout_constraintTop_toBottomOf="@+id/xp_id" />
@@ -184,7 +185,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="35dp"
-        android:text="Ability"
+        android:text="Ability: "
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/ability_view"
         app:layout_constraintStart_toStartOf="@+id/height_id"
         app:layout_constraintTop_toBottomOf="@+id/height_id" />
